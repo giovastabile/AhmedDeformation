@@ -1,0 +1,75 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  16.12plus_engys                       |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (40 0 0);
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (40 0 0);
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           uniform (0 0 0);
+    }
+    ffmaxy
+    {
+        type            symmetryPlane;
+    }
+    ffminy
+    {
+        type            symmetryPlane;
+    }
+    ffmaxz
+    {
+        type            symmetryPlane;
+    }
+    ffminz
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    ahmed_body
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    ahmed_body_front_h
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    ahmed_body_front_v
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    ahmed_stilts
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+}
+
+
+// ************************************************************************* //

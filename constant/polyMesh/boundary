@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  16.12plus_engys                       |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+10
+(
+    inlet
+    {
+        type            patch;
+        physicalType    inlet;
+        nFaces          266;
+        startFace       600153;
+    }
+    outlet
+    {
+        type            patch;
+        physicalType    outlet;
+        nFaces          266;
+        startFace       600419;
+    }
+    ffmaxy
+    {
+        type            symmetryPlane;
+        inGroups        1(symmetryPlane);
+        nFaces          1288;
+        startFace       600685;
+    }
+    ffminy
+    {
+        type            symmetryPlane;
+        inGroups        1(symmetryPlane);
+        nFaces          1288;
+        startFace       601973;
+    }
+    ffmaxz
+    {
+        type            symmetryPlane;
+        inGroups        1(symmetryPlane);
+        nFaces          1748;
+        startFace       603261;
+    }
+    ffminz
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          8182;
+        startFace       605009;
+    }
+    ahmed_body
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          6648;
+        startFace       613191;
+    }
+    ahmed_body_front_h
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          858;
+        startFace       619839;
+    }
+    ahmed_body_front_v
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          1110;
+        startFace       620697;
+    }
+    ahmed_stilts
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          480;
+        startFace       621807;
+    }
+)
+
+// ************************************************************************* //

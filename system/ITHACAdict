@@ -1,0 +1,46 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      ITHACAdict;
+}
+
+// EigenValue solver, can be eigen or spectra
+EigenSolver eigen;
+
+// Number of modes to output and to use for projection
+N_modes_U 40;
+N_modes_P 40;
+N_modes_SUP 0;
+N_modes_DEIM_A_U 20;
+N_modes_DEIM_B_U 20;
+N_modes_DEIM_A_P 20;
+N_modes_DEIM_B_P 20;
+
+
+
+// Output format to save market vectors.
+OutPrecision 20;
+OutType fixed;
+
+// Reduced simple cicle parameters
+residualJumpLim 1e-7;
+normalizedResidualLim 1e-7;
+
+// Specific problem of a stationary case
+tolerance 1e-5;
+
+// If debug = 0, only the last residual will be printed
+debug 1;
+
+
+

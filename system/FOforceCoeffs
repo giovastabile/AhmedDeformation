@@ -1,0 +1,48 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+|  \\    /   O peration     | Version:  v1712
+|   \\  /    A nd           | Web:      www.OpenFOAM.org
+|    \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      FOforceCoeffs;
+    vwgSETUP    "2.3.7";
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+forceCoeffs
+{
+    libs             ( "libforces.so" );
+    type             forceCoeffs;
+    writeControl     timeStep;
+    writeInterval    1;
+    executeControl   timeStep;
+    executeInterval  1;
+    timeStart        0;
+    p                p;
+    U                U;
+    rho              rhoInf;
+    log              true;
+    rhoInf           1.205;
+    liftDir          (0 0 1);
+    dragDir          (1 0 0);
+    CofR             (-0.607 0.0 0.0);
+    pitchAxis        (0 1 0);
+    magUInf          40.0;
+    lRef             1.044;
+    Aref             0.142032;
+    porosity         false;
+    patches          ("ahmed_.*");
+}
+
+
+
+// ************************************************************************* //

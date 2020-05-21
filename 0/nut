@@ -1,0 +1,90 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  16.12plus_engys                       |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      nut;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -1 0 0 0 0];
+
+internalField   uniform 1e-3;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 1e-3;
+    }
+    outlet
+    {
+      type            inletOutlet;
+      inletValue      uniform 1e-3;
+      value           uniform 1e-3;
+    }
+    ffmaxy
+    {
+        type            symmetryPlane;
+    }
+    ffminy
+    {
+        type            symmetryPlane;
+    }
+    ffmaxz
+    {
+        type            symmetryPlane;
+    }
+    ffminz
+    {
+        type            nutUSpaldingWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 1e-3;
+    }
+    ahmed_body
+    {
+        type            nutUSpaldingWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 0;
+    }
+    ahmed_body_front_h
+    {
+        type            nutUSpaldingWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 0;
+    }
+    ahmed_body_front_v
+    {
+        type            nutUSpaldingWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 0;
+    }
+    ahmed_stilts
+    {
+        type            nutUSpaldingWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 0;
+    }
+}
+
+
+// ************************************************************************* //

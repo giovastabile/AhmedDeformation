@@ -1,0 +1,69 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+|  \\    /   O peration     | Version:  v1712
+|   \\  /    A nd           | Web:      www.OpenFOAM.org
+|    \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      FOflowFields;
+    vwgSETUP    "2.3.7";
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+wallShearStress
+{
+    libs             ( "libfieldFunctionObjects.so" );
+    type             wallShearStress;
+    writeControl     writeTime;
+    writeInterval    1;
+    executeControl   timeStep;
+    executeInterval  1;
+    timeStart        0;
+
+    log              no;
+    patches
+    (
+        "ahmed_.*"   
+    );
+    result           wallShearStress;
+}
+
+
+fieldAverage
+{
+    libs              ( "libfieldFunctionObjects.so" );
+    type              fieldAverage;
+    writeControl      writeTime;
+    writeInterval     1;
+    executeControl    timeStep;
+    executeInterval   1;
+    timeStart         3000;
+
+    restartOnRestart  false;
+    restartOnOutput   false;
+
+    avgControls
+    {
+        mean        on;
+        prime2Mean  off;
+        base        time;
+    }
+
+    fields
+    (
+        U { $avgControls; }
+        p { $avgControls; }
+        phi { $avgControls; }
+        wallShearStress { $avgControls; }
+    );
+}
+
+// ************************************************************************* //
