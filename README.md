@@ -24,7 +24,7 @@ Linear and non-linear algebra operations which are not already implemented in Op
 
 ### 1. Clone the folder [**AhmedDeformation**](https://github.com/giovastabile/AhmedDeformation):
 ```
-git clone git@github.com:giovastabile/AhmedDeformation.git
+git clone https://github.com/giovastabile/AhmedDeformation
 ```
 ### 2. Open a terminal into the folder;
 ### 3. Source both **OPENfoam** and the library **ITHACA-FV** depending on the place where you cloned the folder and on the version of OpenFOAM you are using:
