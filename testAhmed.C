@@ -27,27 +27,8 @@
   along with ITHACA-FV. If not, see <http://www.gnu.org/licenses/>.
 \*---------------------------------------------------------------------------*/
 
-// #include<iostream>
-// #include "argList.H"
-// #include "Time.H"
-// #include "fvMesh.H"
-// #include "RBFMotionSolver.H"
-// #include "dictionary.H"
-// #include "fvCFD.H"
-// #include "IOmanip.H"
-// #include "SteadyNSSimple.H"
-// #include "ITHACAutilities.H"
-// #include <Eigen/Dense>
-// #include "EigenFunctions.H"
-// #define _USE_MATH_DEFINES
-// #include <cmath>
-// #include "pointPatchField.H"
-// 
 #include "SteadyNSSimple.H"
 #include "ITHACAstream.H"
-// #include "ITHACAPOD.H"
-// #include "ReducedSimpleSteadyNS.H"
-// #include "forces.H"
 #include "IOmanip.H"
 #include "RBFMotionSolver.H"
 
