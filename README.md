@@ -29,8 +29,8 @@ git clone https://github.com/giovastabile/AhmedDeformation
 ### 2. Open a terminal into the folder;
 ### 3. Source both **OPENfoam** and the library **ITHACA-FV** depending on the place where you cloned the folder and on the version of OpenFOAM you are using:
 ```
-source /opt/openfoam6/etc/bashrc
-source /home/ITHACA-FV/etc/bashrc
+source $YOUR_OPENFOAM_DIR/etc/bashrc
+source $YOUR_ITHACA-FV_DIR/etc/bashrc
 ```
 ### 4. Compile the test case by the use of the command:
 ```
