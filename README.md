@@ -1,6 +1,6 @@
 # Ahmed Body Deformation Test case
 
-Qua metterei una descrizione del problema. Tipo. We show a mesh morphing technique based on RBF on an Ahmed body Geometry. The implmentation is based on OpenFOAM and ITHACA-FV.
+In this test case we show a mesh morphing technique based on Radial Basis Function interpolation for an Ahmed body Geometry. The implementation is based on [**OpenFOAM**](https://www.openfoam.com/) opensource software and on the opensource library [**ITHACA-FV**](https://github.com/mathLab/ITHACA-FV). In particular the test case focuses on the modification of the slope of the rear part of the body.
 
 ## 0. Description of ITHACA-FV
 **ITHACA-FV** is an implementation in **OpenFOAM** of several reduced order modelling techniques. **ITHACA-FV** is designed for [**OpenFOAM 6.0**](https://openfoam.org/version/6), [**OpenFOAM 5.0**](https://openfoam.org/version/5-0), [**OpenFOAM v1812**](https://www.openfoam.com/releases/openfoam-v1812/) and [**OpenFOAM 1906**](https://www.openfoam.com/releases/openfoam-v1906/) but it can be easily adapted also to other versions of OpenFOAM. 
@@ -44,37 +44,26 @@ More details about the way the code works are reported into che file `testAhmed.
 
 ## 3. Authors and contributors
 
-qua metterei me e te e non la farei uguale ad ITHACA
+Codes are currently developed and mantained at [SISSA mathLab](http://mathlab.sissa.it/) by [Dr. Giovanni Stabile](mailto:gstabile@sissa.it) and by [Matteo Zancanaro](mailto:mzancana@sissa.it).
 
-**ITHACA-FV** is currently developed and mantained at [SISSA mathLab](http://mathlab.sissa.it/) by [Dr. Giovanni Stabile](mailto:gstabile@sissa.it) under the supervision of [Prof. Gianluigi Rozza](mailto:gianluigi.rozza@sissa.it)
-
-Contact us by email for further information or questions about **ITHACA-FV**, or open an ''Issue'' on this website. **ITHACA-FV** is at an early development stage, so contributions improving either the code or the documentation are welcome, both as patches or merge requests on this website. If you are willing to contribute please follow the [developer instructions](https://github.com/mathLab/ITHACA-FV/tree/master/src).
+Contact us by email for further information or questions or open an ''Issue'' on this GitHub webpage.
 
 ## 4. How to cite
 
-qua metterei il nostro paper e lo farei anche qui specifico
-
-Most of the theoretical aspects behind **ITHACA-FV** are deeply explained in [<b> Stabile2017CAIM </b>](https://arxiv.org/pdf/1701.03424.pdf) and [<b> Stabile2017CAF </b>](https://arxiv.org/pdf/1710.11580.pdf).
-For this reason, if you use this software, please consider citing the mentioned works, reported in the following bibtex entries:
-```
-@Article{Stabile2017CAIM,
-Title                    = {{POD-Galerkin reduced order methods for CFD using Finite Volume Discretisation: vortex shedding around a circular cylinder}},
-Author                   = {Stabile, Giovanni and Hijazi, Saddam and Mola, Andrea and Lorenzi, Stefano and Rozza, Gianluigi},
-Journal                  = {Communications in Applied and Industrial Mathematics},
-Year                     = {(2017)},
-Volume                   = {8},
-Number                   = {1},
-pages                    = {210-236},
-Doi                      = {10.1515/caim-2017-0011}}
-```
+Most of the aspects related to this test case are contained in [<b> stabile2020efficient </b>](https://arxiv.org/pdf/1901.06373).
+For this reason, if you use this software, please consider citing the mentioned work, reported in the following bibtex entry:
 
 ```
-@Article{Stabile2017CAF,
-Title                    = {{Finite volume POD-Galerkin stabilised reduced order methods for the parametrised incompressible Navier-Stokes equations}},
-Author                   = {Stabile, Giovanni and Rozza, Gianluigi},
-Journal                  = {Computers & Fluids},
-Year                     = {2018},
-Doi                      = {10.1016/j.compfluid.2018.01.035}}
+@article{stabile2020efficient,
+  title={Efficient geometrical parametrization for finite-volume-based reduced order methods},
+  author={Stabile, Giovanni and Zancanaro, Matteo and Rozza, Gianluigi},
+  journal={International Journal for Numerical Methods in Engineering},
+  volume={121},
+  number={12},
+  pages={2655--2682},
+  year={2020},
+  publisher={Wiley Online Library}
+}
 ```
 
 
