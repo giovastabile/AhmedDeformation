@@ -27,7 +27,7 @@ Linear and non-linear algebra operations which are not already implemented in Op
 git clone https://github.com/giovastabile/AhmedDeformation
 ```
 ### 2. Open a terminal into the folder;
-### 3. Source both **OPENfoam** and the library **ITHACA-FV** depending on the place where you cloned the folder and on the version of OpenFOAM you are using:
+### 3. Source both the **OpenFOAM** and the **ITHACA-FV** bashrc files. The specific paths depend on the location where you cloned the folder and on the location where your version of OpenFOAM is stored:
 ```
 source $YOUR_OPENFOAM_DIR/etc/bashrc
 source $YOUR_ITHACA-FV_DIR/etc/bashrc
