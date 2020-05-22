@@ -44,7 +44,7 @@ More details about the way the code works are reported into che file `testAhmed.
 
 ## 3. Authors and contributors
 
-Codes are currently developed and mantained at [SISSA mathLab](http://mathlab.sissa.it/) by [Dr. Giovanni Stabile](mailto:gstabile@sissa.it) and by [Matteo Zancanaro](mailto:mzancana@sissa.it).
+Codes are currently developed and mantained at [SISSA mathLab](http://mathlab.sissa.it/) by [Dr. Giovanni Stabile](mailto:gstabile@sissa.it) and by [Matteo Zancanaro](mailto:mzancana@sissa.it) under the supervision of [Prof. Gianluigi Rozza](mailto:gianluigi.rozza@sissa.it).
 
 Contact us by email for further information or questions or open an ''Issue'' on this GitHub webpage.
 
@@ -65,10 +65,8 @@ For this reason, if you use this software, please consider citing the mentioned 
   publisher={Wiley Online Library}
 }
 ```
-
-
 and cite the [ITHACA-FV website](http://mathlab.sissa.it/ITHACA-FV).
 
 
 ## 5. License
-**ITHACA-FV** is freely available under the GNU LGPL, version 3.
+These codes are freely available under the GNU LGPL, version 3.
