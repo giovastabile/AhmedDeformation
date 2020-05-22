@@ -2,9 +2,10 @@
 
 In this test case we show a mesh morphing technique based on Radial Basis Function interpolation for an Ahmed body Geometry. The implementation is based on [**OpenFOAM**](https://www.openfoam.com/) opensource software and on the opensource library [**ITHACA-FV**](https://github.com/mathLab/ITHACA-FV). In particular the test case focuses on the modification of the slope of the rear part of the body.
 
-<p align="center">
-    <img alt="ITHACA-FV" src="./.img/AhmedFirst.png" width="200" />
-</p>
+<table><tr>
+    <td> <img alt="ITHACA-FV" src="./.img/AhmedFirst.png" width="800" /> </td>
+    <td> <img alt="ITHACA-FV" src="./.img/AhmedLast.png" width="800" /> </td>
+</tr></table>
 
 ## 0. Description of ITHACA-FV
 **ITHACA-FV** is an implementation in **OpenFOAM** of several reduced order modelling techniques. **ITHACA-FV** is designed for [**OpenFOAM 6.0**](https://openfoam.org/version/6), [**OpenFOAM 5.0**](https://openfoam.org/version/5-0), [**OpenFOAM v1812**](https://www.openfoam.com/releases/openfoam-v1812/) and [**OpenFOAM 1906**](https://www.openfoam.com/releases/openfoam-v1906/) but it can be easily adapted also to other versions of OpenFOAM. 
