@@ -50,7 +50,7 @@ Contact us by email for further information or questions or open an ''Issue'' on
 
 ## 4. How to cite
 
-Most of the aspects related to this test case are contained in [<b> stabile2020efficient </b>](https://arxiv.org/pdf/1901.06373).
+Most of the aspects related to this test case are contained in [<b> stabile2020efficient </b>](https://doi.org/10.1002/nme.6324).
 For this reason, if you use this software, please consider citing the mentioned work, reported in the following bibtex entry:
 
 ```
