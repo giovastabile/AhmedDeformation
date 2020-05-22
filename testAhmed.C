@@ -27,21 +27,29 @@
   along with ITHACA-FV. If not, see <http://www.gnu.org/licenses/>.
 \*---------------------------------------------------------------------------*/
 
-#include<iostream>
-#include "argList.H"
-#include "Time.H"
-#include "fvMesh.H"
-#include "RBFMotionSolver.H"
-#include "dictionary.H"
-#include "fvCFD.H"
-#include "IOmanip.H"
+// #include<iostream>
+// #include "argList.H"
+// #include "Time.H"
+// #include "fvMesh.H"
+// #include "RBFMotionSolver.H"
+// #include "dictionary.H"
+// #include "fvCFD.H"
+// #include "IOmanip.H"
+// #include "SteadyNSSimple.H"
+// #include "ITHACAutilities.H"
+// #include <Eigen/Dense>
+// #include "EigenFunctions.H"
+// #define _USE_MATH_DEFINES
+// #include <cmath>
+// #include "pointPatchField.H"
+// 
 #include "SteadyNSSimple.H"
-#include "ITHACAutilities.H"
-#include <Eigen/Dense>
-#include "EigenFunctions.H"
-#define _USE_MATH_DEFINES
-#include <cmath>
-#include "pointPatchField.H"
+#include "ITHACAstream.H"
+// #include "ITHACAPOD.H"
+// #include "ReducedSimpleSteadyNS.H"
+// #include "forces.H"
+#include "IOmanip.H"
+#include "RBFMotionSolver.H"
 
 class geomParVW : public SteadyNSSimple
 {
@@ -63,11 +71,14 @@ class geomParVW : public SteadyNSSimple
                     IOobject::NO_WRITE
                 )
             );
+            // Create the RBF object
             ms = new RBFMotionSolver(mesh, *dyndict);
-            vectorField motion(ms->movingPoints().size(), vector::zero);
+            // Catch the indices of the moving points.
             movingIDs = ms->movingIDs();
+            // Save the starting position of the moving points.
             x0 = ms->movingPoints();
             curX = x0;
+            // Save the starting position of the whole mesh.
             point0 = ms->curPoints();
         }
 
@@ -79,33 +90,8 @@ class geomParVW : public SteadyNSSimple
         RBFMotionSolver* ms;
         labelList movingIDs;
 
-        labelList getIndicesFromBox(fvMesh& mesh, label ind, Eigen::MatrixXd Box,
-                                    List<vector>& points2Move)
-        {
-            points2Move.resize(0);
-            pointField meshPoints(mesh.points());
-            const polyPatch& patchFound = mesh.boundaryMesh()[ind];
-            labelList labelPatchFound(patchFound.meshPoints());
-            labelList boxIndices;
-
-            for (int i = 0; i < labelPatchFound.size(); i++)
-            {
-                auto px = meshPoints[labelPatchFound[i]].component(0);
-                auto py = meshPoints[labelPatchFound[i]].component(1);
-                auto pz = meshPoints[labelPatchFound[i]].component(2);
-
-                if (px >= min(Box(0, 0), Box(1, 0)) && py >= min(Box(0, 1), Box(1, 1)) &&
-                        pz >= min(Box(0, 2), Box(1, 2)) && px <= max(Box(0, 0), Box(1, 0))
-                        && py <= max(Box(0, 1), Box(1, 1)) && pz <= max(Box(0, 2), Box(1, 2)) )
-                {
-                    boxIndices.append(labelPatchFound[i]);
-                    points2Move.append(meshPoints[labelPatchFound[i]]);
-                }
-            }
-
-            return boxIndices;
-        }
-
+        // This function moves linearly the coordinates of the points into points2Move 
+        // where sMax is the displacement of the rear top corner of the ahmed body.
         void linearMovePts(double sMax, List<vector>& points2Move)
         {
             scalarList x;
@@ -136,30 +122,41 @@ int main(int argc, char* argv[])
 {
     geomParVW example(argc, argv);
     fvMesh& mesh = example._mesh();
+    // Create the set of angles you want to use to move the mesh.
+    // Angles are evaluated with respect to the top horizontal part of the ahmed body.
     Eigen::VectorXd beta = Eigen::VectorXd::LinSpaced(50,15,35);
+    // Create the box containing the point you want to move.
     Eigen::MatrixXd Box(2, 3);
     Box << -0.2012, -0.1945, 0.338,
         0.01, 0.1945, 0.05;
+    // Create a list containing the indices of the patch you are interested in into the box
+    List<label> movPat;
+    movPat.append(6);
+
+    scalarList x;
 
     for (int k = 0; k < beta.size(); k++)
     {
         std::cout << "Exporting mesh for sample: " << k+1 << std::endl;
-        mkDir("./defGeom/" + name(k + 1));
-        system("cp -r constant defGeom/" + name(k + 1) + "/constant");
-        system("cp -r system defGeom/" + name(k + 1) + "/system");
-        system("cp -r 0 defGeom/" + name(k + 1) + "/0");
+        // Reset back the mesh to the starting configuration.
         mesh.movePoints(example.point0);
         List<vector> points2Move;
-        labelList boxIndices = example.getIndicesFromBox(mesh, 6, Box, points2Move);
-        double sMax = 0.2012 * (std::tan(M_PI * 25 / 180) - std::tan(M_PI * beta(k) / 180));
+        labelList boxIndices = ITHACAutilities::getIndicesFromBox(example._mesh(), movPat, Box, points2Move);
+        // Evaluate x-axis positions to catch extream ones.
+        for (label i = 0; i < points2Move.size(); i++)
+	    {
+	        x.append(points2Move[i].component(0));
+	    }
+        double sMax = (max(x)-min(x)) * (std::tan(M_PI * 25 / 180) - std::tan(M_PI * beta(k) / 180));
+        // Move the points into points2Move.
         example.linearMovePts(sMax, points2Move);
-        ITHACAutilities::setIndices2Value(boxIndices, points2Move, example.movingIDs,
-                                          example.curX);
+        // Set new position values using full mesh indices.
+        ITHACAutilities::setIndices2Value(boxIndices, points2Move, example.movingIDs, example.curX);
+        // Calculate displacements between new and default configurations.
         example.ms->setMotion(example.curX - example.x0);
+        // Use displacements to move the mesh.
         mesh.movePoints(example.ms->curPoints());
-        ITHACAstream::writePoints(mesh.points(), "./ITHACAoutput/Offline/",
-                                  name(k + 1) + "/polyMesh/");
-        ITHACAstream::writePoints(mesh.points(), "defGeom", name(k + 1) + "/constant/polyMesh/");
-
+        // Export the deformed mesh.
+        ITHACAstream::writePoints(mesh.points(), "./ITHACAoutput/Offline/", name(k + 1) + "/polyMesh/");
     }
 }
